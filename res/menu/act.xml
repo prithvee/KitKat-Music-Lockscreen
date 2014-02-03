@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ash="http://schemas.android.com/apk/res-auto" >
+
+    <item android:id="@+id/help"
+          android:icon="@drawable/ic_action_help"
+          android:title="Help"
+          ash:showAsAction="always" />
+    <item android:id="@+id/about"
+          android:icon="@drawable/ic_action_about"
+          android:title="About"
+          ash:showAsAction="always" />
+</menu>

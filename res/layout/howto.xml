@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffffff" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#10000000"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/TextView012"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/start2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#eae0dc"
+            android:text="(1)Start service"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/stop2"
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:background="#eae0dc"
+            android:text="(2)Stop service"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/TextView022"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:background="#ead585"
+            android:gravity="left|center_vertical|center_horizontal"
+            android:text="(3)Reset lockscreen bg"
+            android:textColor="#333333" />
+    </LinearLayout>
+	
+    <ScrollView android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/linearLayout1" >
+	<RelativeLayout
+	     android:layout_width="fill_parent"
+         android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="@string/howtouse1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="14dp"
+        android:text="@string/howtouse2" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="14dp"
+        android:text="@string/howtouse3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="14dp"
+        android:text="Note : " />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView4"
+        android:text="The service will automatically start at boot." />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView5"
+        android:layout_marginTop="17dp"
+        android:text="Album arts are extracted from songs on storage. So make sure the songs have proper album art to be displayed on lockscreen." />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView6"
+        android:layout_marginTop="17dp"
+        android:text="This app casts album art of the music stored in internal storage and external SD card only.Online steaming not supported." />
+    
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="18dp"
+        android:text="You have to lock and unlock the device to see changes in the album art background." />
+</RelativeLayout>
+</ScrollView>
+</RelativeLayout>
