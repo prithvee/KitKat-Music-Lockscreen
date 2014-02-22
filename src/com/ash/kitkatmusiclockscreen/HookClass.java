@@ -1,14 +1,5 @@
 package com.ash.kitkatmusiclockscreen;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
-import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XposedHelpers;
-
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,14 +12,17 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewManager;
 import android.view.WindowManager;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XposedHelpers;
 
 
 public class HookClass {
@@ -43,7 +37,7 @@ public class HookClass {
 	static Context gbContext;
 	static String color = "#00000000";
 	static Context acontext = MyApplication.getAppContext();
-	private static XSharedPreferences mPrefs;
+	//private static XSharedPreferences mPrefs;
 
 	static BroadcastReceiver mReceiver;
 
@@ -55,7 +49,7 @@ public class HookClass {
 	public static void initZygote(XSharedPreferences prefs) 
     {
 		
-		mPrefs = prefs;
+		//mPrefs = prefs;
 		//XposedBridge.log("ash..running music");
     	
     	
@@ -118,11 +112,14 @@ public class HookClass {
 			
 			
 			
-			
-			
-			
 			if (Build.VERSION.SDK_INT > 16) {
-				Class<?> kgViewManagerClass = XposedHelpers.findClass("com.android.internal.policy.impl.keyguard.KeyguardViewManager", null);
+				
+				String classname="com.android.internal.policy.impl.keyguard.KeyguardViewManager";
+				
+				if( Build.VERSION.SDK_INT == 19)
+					classname="com.android.keyguard.KeyguardViewManager";
+				
+				Class<?> kgViewManagerClass = XposedHelpers.findClass(classname, null);
 				XposedHelpers.findAndHookMethod(kgViewManagerClass, "show",Bundle.class,new XC_MethodHook() {
 
 							@Override

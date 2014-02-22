@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,17 +14,17 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
+@SuppressLint("InlinedApi")
 public class Ser extends Service {
 	IntentFilter iF = new IntentFilter();
 	@Override
@@ -141,7 +142,7 @@ public class Ser extends Service {
                     track = intent.getStringExtra("track");
                     ids = intent.getIntExtra("id", 0);
                     isMusicPlaying = intent.getBooleanExtra("playing", false);
-                    String state = new Boolean(isMusicPlaying).toString();
+                    //String state = new Boolean(isMusicPlaying).toString();
                     /*Toast.makeText(context,
 							"State type is: " + state,
 							Toast.LENGTH_SHORT).show();
@@ -160,6 +161,7 @@ public class Ser extends Service {
                     Log.e("Music",artist+":"+album+":"+track);
                     //Toast.makeText(context, "Command : "+cmd+"n Artist : "+artist+" Album :"+album+"Track : "+track+" " , Toast.LENGTH_SHORT).show();
                     path = match(track,album,ids,context);
+                    cursor.close();
                     update();
         }
         
@@ -180,7 +182,8 @@ public class Ser extends Service {
     Drawable adw;
     Drawable dw;
     public MediaMetadataRetriever myRetriever = new MediaMetadataRetriever();
-    void update()
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
+	void update()
     {   
     	 /*tvsong = (TextView) findViewById(R.id.song);
 		 tvalbum = (TextView) findViewById(R.id.album);
@@ -226,7 +229,6 @@ public class Ser extends Service {
 	    		    try {
 	    				if (artwork != null && isMusicPlaying) {
 	    					Bitmap bMap = BitmapFactory.decodeByteArray(artwork, 0,artwork.length);
-	    					@SuppressWarnings("deprecation")
 	    					Intent intent = new Intent("ART3");
 	    					intent.putExtra("art", bMap);
 	    					intent.putExtra("artist", artist);
@@ -281,7 +283,8 @@ public class Ser extends Service {
 					sendBroadcast(intent);
 				}
 	    }
-
+    
+    Cursor cursor;
 	public Drawable dorig = null;
     public int i = 0; 
     public static Drawable drw ;
@@ -289,7 +292,7 @@ public class Ser extends Service {
     Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
     public String match(String name,String albname , int idss,Context context) 
         { 
-            Cursor cursor;
+            
             Uri allsongsuri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
             String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
             String spath = "x";
@@ -331,7 +334,7 @@ public class Ser extends Service {
 
 							} while (cursor.moveToNext());
 						}
-						//cursor.close();
+						
 					}
 				}
 			} catch (Exception e) {
